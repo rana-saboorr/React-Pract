@@ -1,0 +1,121 @@
+.env -> environmental variable : An environment variable is basically a dynamic value your app can read at runtime.
+
+It’s a way to store important information outside your code.
+
+“Instead of writing secret keys, URLs, or IDs directly in your code, you store them in a separate file and tell the app: ‘Read them from here.’
+
+VITE_APPWRITE_URL="e.g., api-url"   
+VITE_APPWRITE_PROJECT_ID="api-key"
+VITE_APPWRITE_DATABASE_ID=""   
+VITE_APPWRITE_TABLE_ID=""
+VITE_APPWRITE_BUCKET_ID="storage-id" etc  to access every project have own way to import it like in vite we use them as
+
+{ appwriteUrl: String(import.meta.env.VITE_APPWRITE_URL)}
+
+
+
+AppWrite -> same like firebase but this is open source also export whenever you want..
+
+auth.js -> 
+
+client → The Appwrite client instance.
+
+account → The Appwrite account instance for user management.
+
+createAccount -> for create account
+
+createEmailPasswordSession: {only use for login}
+
+Creates a session for a user using their email and password.
+Essentially, it logs the user in.
+Returns session data:
+userId → ID of the logged-in user
+sessionId → Unique ID of this session
+secret / token info → Used to authorize API calls
+How it works: ->
+User enters email & password.
+Appwrite checks if credentials are valid.
+If valid, it creates a session in the server.
+Your frontend receives session info and can now make authenticated requests.
+
+deleteSession:
+
+deleteSession(sessionId)
+Deletes one specific session.
+Example: Logging out a user on one device but leaving other devices logged in.
+You need to provide the sessionId (from createEmailSession).
+deleteSessions()
+Deletes all sessions of the user.
+Example: Logging out from every device, like a “Log out of all devices” feature.
+Why use them:
+Removing sessions revokes access tokens, so the user can’t make API requests anymore.
+Keeps your app secure by controlling who is logged in.
+Analogy:
+deleteSession → “Take away the key from one device.”
+deleteSessions → “Take away all keys from every device.”
+
+
+Session: like time period that user should login after that logout..
+Users don’t have to send their password every time.
+Once logged in, users stay logged in for a while.
+Appwrite uses the session to identify the current user.
+When the session is deleted, the server immediately knows the user is logged out.
+
+
+config.js ->
+
+slug -> unique ids from db 
+
+container ->
+
+children -> whatever you put inside a component
+<Container>
+  <h1>Hello</h1>
+</Container>
+
+React automatically sends:
+children = <h1>Hello</h1>
+ children is prop... but inner content use for 
+
+Header.jsx
+
+const authStatus = useSelector((state) => state.auth.status); check state of login or not
+
+how redux work with appwrite:
+
+user enter data for signup account create ho ga then login bhi ho jay ga server side pr now getcurrentuser say data fetch ho ga aur wo state->userdata mn dispatch rakh dia status true hoa and then user login
+for login:
+authService.login()
+   ↓
+Appwrite session created
+   ↓
+getCurrentUser()
+   ↓
+dispatch(login())
+
+logout: logout call dispatch sessions delete status false.
+
+React button
+   ↓
+Appwrite (delete session)
+   ↓
+Redux (clear state)
+   ↓
+UI updates
+
+
+Appwrite already handles login, why Redux?
+Ans: u login in app using appwrite now you have many parts header,sidebar etc that all to know ..is user logged in? so instead to tell 
+Every part asks Appwrite again:
+getCurrentUser()
+
+So if you have 10 parts, that’s 10 calls to the server.
+Slow and messy.
+Ask Appwrite only once.
+
+
+forwardref: ->
+Without forwardRef → ref points to component, not <input>
+With forwardRef → ref points to <input>
+
+

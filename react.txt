@@ -1,0 +1,197 @@
+Why we need hooks? securing and sharing loading reuse krna ho wgera
+Hooks let React components remember things and do things.
+we can say that if we render a function or variable again it forget everything so we used hooks.
+
+As we have a variable and we use it at multiple places on the page but when we change it's value, so variable value change and show on console but on page as ui it remains same bcz this is react work so we use hooks (folder in node modules all things mention in it we just use it) we useState (variable, functionality)
+import{useSatate} from 'react'
+ let [counter,setCounter] = useState(0);
+
+setCounter(counter-1);
+now we can update value using setCounter and show by variable counter and updated value show on our page.
+
+
+
+Tailwind and Props? 
+
+So in react we differ on the basis of functionalities not on files like keep html css jsx code in same file
+
+we import Tailwind and use it then 
+
+Props-> we make components for multiple things that we want to used multiple times 
+make a new component file export and return it where you wanna use it just import that file
+
+But all cards have or share same values bcz they call from a same component we need to change every details for specific card for this we use props(milta hai) 
+
+ <CardMusic obj={musicDetail} />
+    <CardMusic/>
+
+function CardMusic({obj={ name: "Unknown", singer: "Unknown"}})
+
+nad use obj where you want..
+
+
+
+UseState: -> ui  mn changing k lia jis jis jga change hoin hai wo ya krway ga simple variable say react mn nhi hotin.
+
+useEffect: -> ui k bad chalta hai like when ui change then please do this work i mean jb bhi length checkbox change houn new password generate kr do.
+
+useCallback: -> useEffect mn function ko react hr bar as a new function behave krta hai  to useCallBack is ko dependencies k base pr as a olf functoion hi behave krwata hai when dependencies change then function change bcz as per react perspective everytime useEffect call react behave like a new function every single time so that's why we used useCallBack k bhai it's your old function..
+
+useRef: -> refrence hook render trigger kia bgair select kr skty ho  -> react-re-render nhi hota  e.g. ->input focus, scroll, video play/pause ->
+
+
+Use this when you have a side effect and no reusable function.Use useCallBack when function identity matters, but there’s no side effect. both together You have a side effect. The side effect is triggered by a reusable function...
+
+
+if you want reuse a function then you use CallBack but if you want use only for one condition you may use useEffect.
+
+
+
+in react-router-dom we used link and navlink ,-> from navlink we get more options then link and link we used in place of *a* tag in react bcz *a* refresh hole page and in react we don't need that
+
+Outlet ->react router dom ki trf sy nesting ki ja skti hai <Header/><Outlet/><Footer/>   -> now, header and footer content remains same but outlet content change upon the time..
+
+path element loader + useLoader to load data
+
+
+Context Api: -> aur bhi libraries hain but pure pure react ki hai is lia -> Redux state manage krti hai organize way mn -> 
+
+is k alter aik global variable or aisi koi chiz bna leta to bhai agr koi khin os variable mn change kr leta to kia krty.  aur aik acha state mismatch hai also   
+
+Context API in React allows you to share data across multiple components without passing props manually at every level.
+
+Create context then make context provider like {user,setuser}
+
+send data by context -> useState say apna data setuser(yahn ya context wala hi hai apny kam k lia usestate apko bnany pru gai wo yahn st kr do like  setUser({ username, password });  username pass -> local useState but setUser context wala hai jo as a props use hoa provider say) mn dal do then access k lia user say direct access kr lo  like -> Wellcome {user.username} && Your Password is {user.password}
+
+POV:   -> provider alg bnany ki zarorat nhi aik hi file say provide kr skty ho   jis bhi method say kro values ka dhyan rkhna like provider mn bnao to wahn vales send agr aik mn hi kro to access wrap krty hoy values
+
+
+
+{i have to create a todo project in which i also want to make a simple signin  signup page in which data store in local storage like cookies and after login it show in new screen but it can't show by url i mean if anyother person can't access it when on signin page only it show when they sign in successfully like if user enter signup and sign in then show data of login and signout another user can't see that data in url in inspect but it store in cookies storage after login or aignup it show everywhere in inspect and in page}
+
+react -> aik library hai
+
+react-dom -> browser pr kam krwana hai to ya hai
+
+react-native -> agr mobile pr kam krwana hai to ya hai
+
+
+Redux-> state management library  
+
+react-redux -> react mn kam lainy k lia
+  
+context-api -> aik central bna lo and hook ki madad say jis ko chahiya access kr lo...
+
+redux -> independent library hai i mean zrori nhi react k sath use ho js k kisi bhi framfork k sath use kr skty...
+
+redux-toolkit ->> battries including means 100 setup krny ki zrorat nhi..
+builtin slicing wegara 
+
+
+store -> global single tool variable type bnay gai k wahn say jo chahiya ly lo.
+
+reducers ->  store ko change krna hai kis store mn change krna hai.
+
+useSelector -> value select krna k lia.
+
+useDispatch -> value dispath krny k lia.
+
+createSlice ->  
+
+nanoid -> method just unique id generate krta hai just.
+
+initalState
+
+
+flux -> architecture develop by facebook  -> data flow aik hi trha say data jay store ho aur aik hi trha say data fetch ho ya kis trha say ho ga is ka aik structure hona chahiya is ka aik mechanism hona chahiya warna problem ho skti hai 
+ flux ka data flow bhi itna acha nhi tha
+ to is say inspire ho kr 
+ better version of flux -> redux
+
+redux -> you should never modify your state single store ho read only ho  change should be through pure function(reducers) 
+in proper mechanism
+
+redux thunk saga middlewares chrome extensions etc...  
+
+aur bhtr bnany k lia toolkit aya  is mn simple flow do and internally khud manage kroun ga sb..   building middlewares hain
+
+
+{context api mn agr aik value change ki to os ko jo share kr rha sb render ho jay ga even all of them wants or not  👉 If ONE value changes
+👉 ALL components using that context re-render.. even if they don't need it.    Context has:
+❌ no reducers
+❌ no actions
+❌ no clear flow   
+Logic becomes messy:
+
+Bad for complex logic
+
+Things like:
+
+API calls
+
+caching
+
+loading states
+
+optimistic updates
+
+multiple reducers
+
+Context becomes messay code 🍝
+
+Redux Toolkit handles these cleanly.what is this mena
+}
+
+redux toolkit mn only subscribed components re-render...
+
+
+configStore and export -> createSlice -> reducers -> {functions(state, actions) -> state current jo chal rha and action means data  } ->
+
+dispatch reducers ko use krty hoy store mein chane krta hai.
+
+store kbhi bhi value update nhi leta hai data flow hi nhi hai just reducers btany prty hain. features ko slice bolty hain.. 
+
+slice bnany k lia  {name,initailState, reducers} ya 3 chiz chahiya   -> state and actions in functions payload mean object
+
+state preserve in redux i mean dot dot lga kr value access nhi krni prti 
+
+state say array nikalta on ko spread krta then value daltni prti in context api redux mn just likho
+
+useDispatch to add value by import reducers
+
+useSelector to select by help of {state} 
+
+
+
+
+
+mega project:
+
+appwrite -> same like firebase database but appwrite is open source whenever you want you export it..
+
+restart krty rhna project compulsory
+
+PROCESS K ANDR DEFINE HOTI HAI YA ENV FILE
+
+ ENV (environment variables): Environment variables are values outside your code that control how your app works. for security flexibility i mean api password etc are hidden not written in code...
+
+env project k root mein bnao
+
+koi na koi database ho gi jis say hmari application interact kry gi and os database mn unique id other data secrets hon gai wo yahn use kri gai problem ho gi bcz react front end library hai jo yahn likha jata hai wo js say browser mn ship hota hai kuch variables bnaty hai jo system variables bnay jaty hain onko rkhny ka tarika bhi alg hota hai 
+
+
+ENV -> hr project k lia call krny ka tarika alg hota hai like vite simple-react next etc
+
+appwrite mn jao and jo chahiya wo kam kr lo.
+
+RTE: real time editor...
+
+slug transform ->
+
+Services : wander login , aik class bnti hai kuch method export krty hain inside kia ho rha hai is say mtlab nhi just kia data chahiya wo btao method use kro that all ab jis marzi db say interact ho koi msla nhi
+
+
+
+I want to build a movie website using Vite + React + JavaScript where I strictly use props, custom hooks, Redux Toolkit for global state management, lazy loading, useMemo, useCallback, useState, useEffect, React Hook Form (useForm), localStorage, protected routing, dependency injection where needed, and API data fetching, and I do not want to use Context API at all. When the app loads, the Home page should appear first with a header containing a Home button and a Sign In button; after login, the Sign In button should automatically change to Logout. The Home page should fetch movies from an API and display them in two horizontal rows, one moving left-to-right and the other right-to-left. The Sign In and Sign Up forms must be built using useForm with proper validation and submission handling. After successful authentication, the user should be redirected to a protected page. On this protected page, display “Hello username” and an input field with a button where the user can enter movie names separated by commas or dots (e.g., dhoom, om shanti om, koi mil gya). The input should be parsed, each movie searched via API, and results displayed as movie cards under tags; after every three movies, the list should be horizontally scrollable/movable. The protected route must only be accessible to logged-in users, and if a user is already logged in, they should automatically navigate to this page on reload. Logout should clear authentication and redirect to Home. Each user’s movie searches must be saved in localStorage per user, so when the same user logs in again, their previous data is restored, while other users must not see it. Use Redux Toolkit for authentication and movie state, useMemo for expensive computations, useCallback for stable handlers, lazy loading for pages, and apply dependency injection where suitable, keeping the architecture clean, component-based, and driven only by the specified tools.
+
